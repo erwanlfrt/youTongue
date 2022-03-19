@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("/src/assets/font/Roboto/roboto-v29-latin-regular.woff") format("woff"),
+  url("/src/assets/font/Roboto/roboto-v29-latin-regular.woff2") format("woff2")
+ }
+
+ html, body {
+  background-color: #ffffff;
+  height: 100%;
+ }
+
+#App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}

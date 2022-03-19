@@ -1,0 +1,82 @@
+[
+  {
+    "language": "English",
+    "bcp47": "en",
+    "iso3166": "GB"
+  },
+  {
+    "language": "Mandarin",
+    "bcp47": "cmn",
+    "iso3166": "CN"
+  },
+  {
+    "language": "Hindi",
+    "bcp47": "hi",
+    "iso3166": "IN"
+  },
+  {
+    "language": "Spanish",
+    "bcp47": "es",
+    "iso3166": "ES"
+  },
+  {
+    "language": "French",
+    "bcp47": "fr",
+    "iso3166": "FR"
+  },
+  {
+    "language": "Arabic",
+    "bcp47": "arb",
+    "iso3166": "SA"
+  },
+  {
+    "language": "Bengali",
+    "bcp47": "bn",
+    "iso3166": "BD"
+  },
+  {
+    "language": "Russian",
+    "bcp47": "ru",
+    "iso3166": "RU"
+  },
+  {
+    "language": "Portuguese",
+    "bcp47": "pt",
+    "iso3166": "PT"
+  },
+  {
+    "language": "Urdu",
+    "bcp47": "in",
+    "iso3166": "IN"
+  },
+  {
+    "language": "Indonesian",
+    "bcp47": "id",
+    "iso3166": "ID"
+  },
+  {
+    "language": "German",
+    "bcp47": "de",
+    "iso3166": "DE"
+  },
+  {
+    "language": "Japan",
+    "bcp47": "ja",
+    "iso3166": "JP"
+  },
+  {
+    "language": "Korean",
+    "bcp47": "ko",
+    "iso3166": "KR"
+  },
+  {
+    "language": "Serbian",
+    "bcp47": "sr",
+    "iso3166": "RS"
+  },
+  {
+    "language": "Italian",
+    "bcp47": "it",
+    "iso3166": "IT"
+  }
+]

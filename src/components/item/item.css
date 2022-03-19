@@ -1,0 +1,92 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  margin: 1% 0;
+  width: 100%;
+  height: 202px;
+  background-color: #f9f9f9;
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 360px;
+  height: 202px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.duration {
+  color: white;
+  background-color: black;
+  margin: 1%;
+  font-weight: 500;
+  font-size: 0.95em;
+  padding: 0% 0.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2%;
+  font-family: 'Roboto', 'Arial';
+  color: grey;
+  font-size: 0.75rem;
+  width: 100%;
+  /* justify-content: space-between; */
+  max-width: 450px;
+
+}
+
+
+.item-uper {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-title  {
+  font-size: 1.1rem;
+  color: black;
+}
+
+.item-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 10%;
+
+}
+
+/** CHANNEL STYLE **/
+
+
+.item-channel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 23%;
+}
+
+.item-channel-picture {
+  width: 30%;
+  border-radius: 50%;
+}
+
+.item-channel-certified {
+  width: 12%;
+}
+
+
+
+
+.item-subtitles {
+  display: flex;
+  flex-direction: row;
+  height: 9%;
+}

@@ -1,0 +1,22 @@
+.more-button {
+  display: flex;
+  align-items: center;
+  outline: 2px solid black;
+  border-radius: 20px;
+  padding-right: 1%;
+  margin: 1%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.more-button img {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.more-button span {
+  font-size: 0.9em;
+  font-weight: bold;
+}
