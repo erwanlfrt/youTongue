@@ -1,0 +1,13 @@
+.scrollbar-wrapper {
+  padding-left: 5%;
+  width: 5px;
+  background-clip: content-box;
+  background-color: #404040;
+}
+
+.scrollbar {
+  height: 100px;
+  margin-top: 0px;
+  border-radius: 5px;
+  background-color: #cfcfcf;
+}

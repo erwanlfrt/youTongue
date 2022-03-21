@@ -5,6 +5,7 @@ import { IResult, ISubtitle } from '../../model/Format';
 import SearchService from '../../services/SearchService';
 import Item from '../item/Item';
 import './result-list.css'
+import Context from '../../services/Context';
 
 type ResultProps = {
   results: IResult[]
@@ -14,6 +15,7 @@ class ResultList extends React.Component {
   private results: IResult[];
   private searchService: SearchService;
   public state: any;
+  static contextType = Context;
 
   constructor(props: any) {
     super(props);
@@ -21,6 +23,7 @@ class ResultList extends React.Component {
       results: []
     }
     this.searchService = new SearchService();
+    
   }
 
   componentDidMount() {

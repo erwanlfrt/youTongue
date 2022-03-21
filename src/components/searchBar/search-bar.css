@@ -36,6 +36,7 @@
   font-size: 1em;
   border: none;
   background-color: transparent;
+  outline: none;
 }
 
 #search-bar-input-submit {

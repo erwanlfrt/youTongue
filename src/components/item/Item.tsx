@@ -10,7 +10,7 @@ type ItemProps = {
   title: string,
   description: string
   thumbnail: string,
-  duration: number,
+  duration: Date,
   views: number,
   date: Date,
   channel: Channel,
@@ -25,7 +25,8 @@ class Item extends React.Component<ItemProps>{
   constructor (props: ItemProps) {
     super(props);
 
-    this.duration = this.props.duration / 60 + ':' + (this.props.duration % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    // this.duration = this.props.duration / 60 + ':' + (this.props.duration % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    this.duration = this.props.duration.getMinutes() + ':' + this.props.duration.getSeconds();
     this.stringDate = ((new Date()).getFullYear() - this.props.date.getFullYear()) + ' years ago';
     this.views = this.props.views / 1000000 + 'M views';
     
@@ -58,7 +59,7 @@ class Item extends React.Component<ItemProps>{
             {
               this.props.subtitles.map((subtitle) => {
                 return (
-                  <Language flag={subtitle.flag} language={subtitle.language}></Language>
+                  <Language flag={subtitle.flag} language={subtitle.language} bcp47={subtitle.bcp47}></Language>
                 )
               })
             }

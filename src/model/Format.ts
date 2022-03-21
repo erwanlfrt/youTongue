@@ -12,7 +12,7 @@ interface IResult {
   thumbnail: string,
   description: string,
   subtitles: ISubtitle[],
-  duration: number;
+  duration: Date,
   views: number;
   date: Date;
 

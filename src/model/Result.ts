@@ -8,12 +8,12 @@ class Result {
   private description: string;
   private channel: Channel;
   private subtitles: Subtitle[];
-  private duration: number;
+  private duration: Date;
   private views: number;
   private date: Date;
 
 
-  public Result(title: string, channel: Channel, thumbnail: string, description: string, subtitles: Subtitle[], duration: number, views: number, date: Date) {
+  public Result(title: string, channel: Channel, thumbnail: string, description: string, subtitles: Subtitle[], duration: Date, views: number, date: Date) {
     this.title = title;
     this.thumbnail = thumbnail;
     this.channel = channel;

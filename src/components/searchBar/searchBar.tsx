@@ -64,7 +64,7 @@ class SearchBar extends React.Component<any, SearchBarState> {
           {
             this.subtitles.map((subtitle) => {
               return (
-                <Language flag={subtitle.flag} language={subtitle.language} ></Language>
+                <Language flag={subtitle.flag} language={subtitle.language} bcp47={subtitle.bcp47} ></Language>
               )
             })
           }
