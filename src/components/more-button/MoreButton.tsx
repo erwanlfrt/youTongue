@@ -3,7 +3,7 @@ import './more-button.css';
 import AddIcon from '../../assets/icons/add_circle_outline_black_24dp.svg';
 
 type MoreButtonProps = {
-  innerRef: React.RefObject<HTMLDivElement>
+  innerRef: React.RefObject<HTMLDivElement> | null
 }
 
 class MoreButton extends React.Component<MoreButtonProps>{

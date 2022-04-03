@@ -26,10 +26,7 @@ class LanguagesPopup extends React.Component<PopupProps, PopupState> {
     super(props);
     this.closeButton = React.createRef<HTMLButtonElement>();
     this.inputField = React.createRef<HTMLInputElement>();
-    this.subtitles = getAllLanguages()
-    this.subtitles = this.subtitles.concat(this.subtitles);
-    this.subtitles = this.subtitles.concat(this.subtitles);
-    this.subtitles = this.subtitles.concat(this.subtitles);
+    this.subtitles = getAllLanguages();
     this.allSubtitles = this.subtitles;
     this.state = {
       show: true,

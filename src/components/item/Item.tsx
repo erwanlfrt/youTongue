@@ -7,6 +7,7 @@ import Language from 'components/language/Language';
 
 
 type ItemProps = {
+  id: string,
   title: string,
   description: string
   thumbnail: string,
@@ -21,16 +22,24 @@ class Item extends React.Component<ItemProps>{
   private duration: string;
   private stringDate: string;
   private views: string;
+  // private element: React.RefObject<HTMLDivElement>;
 
   constructor (props: ItemProps) {
     super(props);
+    // this.element = React.createRef<HTMLDivElement>();
 
     // this.duration = this.props.duration / 60 + ':' + (this.props.duration % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    this.duration = this.props.duration.getMinutes() + ':' + this.props.duration.getSeconds();
+    this.duration = this.props.duration.getMinutes() + ':' + this.props.duration.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     this.stringDate = ((new Date()).getFullYear() - this.props.date.getFullYear()) + ' years ago';
-    this.views = this.props.views / 1000000 + 'M views';
+    this.views = Math.trunc(this.props.views / 1000000) + 'M views';
     
   }
+
+  // private loadEvents (): void {
+  //   this.element.current?.addEventListener('click', () => {
+
+  //   });
+  // }
 
 
   render() {
@@ -39,7 +48,7 @@ class Item extends React.Component<ItemProps>{
       certifIcon = <img className="item-channel-certified" src={verifiedIcon} alt=""/>;
     }
     return(
-      <div className="item">
+      <a className="item" href={'https://www.youtube.com/watch?v=' + this.props.id} target="_blank" rel="noreferrer noopener">
         <div className="thumbnail" style={{backgroundImage : 'url("' + this.props.thumbnail +'")'}}>
           <span className="duration">{this.duration}</span>
         </div>
@@ -66,7 +75,7 @@ class Item extends React.Component<ItemProps>{
           </div>
         </div>
         
-      </div>
+      </a>
     )
   }
 }

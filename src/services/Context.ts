@@ -3,11 +3,15 @@ import React from 'react';
 
 
 interface ArrayContext {
-  languages_bcp47: string[]
+  languages_bcp47: string[],
+  loading: boolean,
+  displayWelcomeScreen: boolean
  }
 
  const defaultValue: ArrayContext= {
-   languages_bcp47:[]
+   languages_bcp47:[],
+   loading: false,
+   displayWelcomeScreen: true
  }
 
 

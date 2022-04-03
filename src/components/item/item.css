@@ -5,6 +5,8 @@
   width: 100%;
   height: 202px;
   background-color: #f9f9f9;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .thumbnail {
@@ -88,5 +90,10 @@
 .item-subtitles {
   display: flex;
   flex-direction: row;
-  height: 9%;
+  flex-wrap: wrap;
+}
+
+
+.item-subtitles .item-subtitle {
+  margin-bottom: 2%;
 }

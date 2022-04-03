@@ -2,13 +2,20 @@ import React from 'react';
 import './search-bar.css';
 import MagnifyingGlass from '../../assets/icons/search_black_24dp.svg'
 import Subtitle from '../../model/Subtitle';
-import { getAllLanguages } from '../../services/LanguageService';
+import { getMostSpokenLanguages } from '../../services/LanguageService';
 import Language from '../language/Language';
 import MoreButton from '../more-button/MoreButton';
 import LanguagesPopup from 'components/languages-popup/LanguagesPopup';
+import LogoText from '../../assets/logo/youtongue_text.svg';
+import Logo from '../../assets/logo/youtongue.svg';
+import searchService from '../../services/SearchService';
+import Context from '../../services/Context';
+
 
 type SearchBarState = {
   displayPopup: boolean;
+  waitForSearch: number;
+  displayWelcomeScreen: boolean;
 }
 
 
@@ -16,9 +23,13 @@ class SearchBar extends React.Component<any, SearchBarState> {
 
   private subtitles: Subtitle[];
   private more: React.RefObject<HTMLDivElement>;
+  private input: React.RefObject<HTMLInputElement>;
+  static contextType = Context;
 
   state = {
-    displayPopup: false
+    displayPopup: false,
+    waitForSearch: -1,
+    displayWelcomeScreen: true
   };
 
   handlePopupDisplay = (displayPopup: boolean) => {
@@ -28,7 +39,8 @@ class SearchBar extends React.Component<any, SearchBarState> {
   constructor (props: any) {
     super(props);
     this.more = React.createRef<HTMLDivElement>();
-    this.subtitles = getAllLanguages().slice(0,5);
+    this.input = React.createRef<HTMLInputElement>();
+    this.subtitles = getMostSpokenLanguages();
   }
 
   componentDidMount () {
@@ -42,20 +54,65 @@ class SearchBar extends React.Component<any, SearchBarState> {
         this.setState({displayPopup: true});
       });
     }
+
+    this.input.current?.addEventListener('click', () => {
+      this.animateWelcomeScreen();
+    });
+
+    this.input.current?.addEventListener('input', () => {
+      clearTimeout(this.state.waitForSearch);
+      this.context.loading = true;
+      const event = new CustomEvent('search_start');
+      document.dispatchEvent(event);
+      this.setState({waitForSearch: window.setTimeout(() => {
+          searchService.search(this.input.current?.value as string, this.context.languages_bcp47);
+          this.setState({waitForSearch: -1});
+          this.context.loading = false;
+        }, 500)
+      });
+    });
+  }
+
+  private animateWelcomeScreen () {
+    if (this.state.displayWelcomeScreen) {
+      this.setState({displayWelcomeScreen: false});
+      const event = new CustomEvent('input-click');
+      document.dispatchEvent(event);
+    }
   }
 
   render() {
     let popup = null;
+    let content = null;
+    let header = null
     if (this.state.displayPopup) {
         popup = <LanguagesPopup handlePopupDisplay={this.handlePopupDisplay}></LanguagesPopup>
     }
-
+    if (true) {
+      header = 
+        <div id="welcome-header" className={`${this.state.displayWelcomeScreen ? "welcome-header-display" : "welcome-header-hidden"}`}>
+          <div id="welcome-header-logo-wrapper">
+            <img src={Logo} alt="" id="welcome-header-logo" />
+          </div>
+          <div>
+            <div id="welcome-header-text">
+              <h1>Looking for YouTube videos with captions ?</h1>
+              <span>Search youTube videos according to languages you want.</span>
+            </div>
+            
+          </div>
+        </div>
+    }
     return(
       <div id="search-bar-container">
         {popup}
-        <div id="search-bar-wrapper">
-          <form id="search-bar">
-            <input id="search-bar-input-text" type="text" placeholder="Search"></input>
+        <div id="search-bar-wrapper" className={`${this.state.displayWelcomeScreen ? "search-bar-wrapper-zoom-in" : "search-bar-wrapper-zoom-out"}`}>
+          <div id="logo-wrapper">
+            <img src={LogoText} alt="" id="logo" />
+          </div>
+          {header}
+          <form id="search-bar" className={`${this.state.displayWelcomeScreen ? "search-bar-zoom-in" : "search-bar-zoom-out"}`}>
+            <input id="search-bar-input-text" type="text" placeholder="Search" autoComplete="off" ref={this.input}></input>
             <button id="search-bar-input-submit" type="submit" >
               <img src={MagnifyingGlass} alt="" />
             </button>

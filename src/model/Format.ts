@@ -7,6 +7,7 @@ interface ISubtitle {
 
 
 interface IResult {
+  id: string,
   title: string,
   channel: IChannel,
   thumbnail: string,

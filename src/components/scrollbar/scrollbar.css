@@ -1,12 +1,20 @@
+.scrollbar-wrapper-wrapper {
+  position: relative;
+  left: 5%;
+  padding: 0 5%;
+}
+
 .scrollbar-wrapper {
-  padding-left: 5%;
+  float: left;
   width: 5px;
-  background-clip: content-box;
   background-color: #404040;
+  border-radius: 5px;
 }
 
 .scrollbar {
+  position: relative;
   height: 100px;
+  width: 5px;
   margin-top: 0px;
   border-radius: 5px;
   background-color: #cfcfcf;

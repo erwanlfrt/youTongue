@@ -16,18 +16,46 @@
   width: 100%;
   padding-top: 2%;
   z-index: 1;
+  transition: min-height 1.5s ease-in;
+  transition-delay: 0.6s;
+  transition-property: min-height
+}
+
+.search-bar-wrapper-zoom-in {
+  min-height: 800px;
+}
+
+.search-bar-wrapper-zoom-out {
+  min-height: 0;
 }
 
 #search-bar {
-  width: 55%;
-  max-height: 40px;
+  height: 100%;
   display: flex;
   align-items: stretch;
   justify-content: center;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 30px;
   background-color: white;
-  padding: 1% 1%;
+  transition: min-width 1.5s ease-in, min-height 1.5s ease-in, font 1.5s ease-in, margin-top 1.5s ease-in-out;
+  transition-delay: 0.6s;
+  transition-property: min-width, min-height, font, margin-top;
+  max-height: 50px;
+  z-index: 10;
+}
+
+.search-bar-zoom-out {
+  min-width: 45%;
+  font-size: 16px;
+  margin-top: 3%;
+}
+
+.search-bar-zoom-in {
+  min-width: 55%;
+  height: 100%;
+  min-height: 60px;
+  font-size: 18px;
+  margin-top: 30%;
 }
 
 #search-bar-input-text {
@@ -37,6 +65,7 @@
   border: none;
   background-color: transparent;
   outline: none;
+  padding: 1% 2%;
 }
 
 #search-bar-input-submit {
@@ -50,9 +79,10 @@
 
 #search-bar-language-section {
   display: flex;
-  padding: 2% 0;
+  margin: 2% 0;
   max-height: 20px;
-  overflow: hidden;
+  height: 100%;
+  z-index: 10;
 }
 
 #search-bar-language-section .item-subtitle {
@@ -65,4 +95,67 @@
 
 #search-bar-language-section .selected {
   filter: none;
+}
+
+#logo {
+  width: 8%;
+}
+
+#empty-message {
+  color: grey;
+}
+
+#empty-message-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#welcome-header {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  transition:  max-height  1.5s ease-in, opacity 0.3s linear;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.welcome-header-display {
+  opacity: 1;
+}
+
+.welcome-header-hidden {
+  opacity: 0;
+}
+
+#welcome-header-logo-wrapper {
+  position: relative;
+  display: flex;
+  border-right: 2px solid black;
+  padding: 2% 0;
+  margin-bottom: 3%;
+  overflow: hidden;
+} 
+
+#welcome-header-logo {
+  position: relative;
+  height: 300px;
+  left: 175px;
+}
+
+#welcome-header-text {
+  margin-left: 5%;
+}
+
+#logo-wrapper {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  top: 0;
+  width: 100%;
+  margin: 1% 0;
 }

@@ -39,7 +39,7 @@ class Language extends React.Component<LanguageProps> {
     if (el !== null && el !== undefined) {
       el.addEventListener('click', () => {
         if (el.classList.contains('selected')) {
-          this.context.languages_bcp47.pop(this.props.bcp47);
+          this.context.languages_bcp47 =this.context.languages_bcp47.filter((item: string) => item !== this.props.bcp47)
         } else {
           if (!this.context.languages_bcp47.includes(this.props.bcp47)) {
             this.context.languages_bcp47.push(this.props.bcp47);

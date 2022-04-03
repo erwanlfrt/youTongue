@@ -562,12 +562,12 @@
   {
       "language": "Malay (macrolanguage)",
       "bcp47": "ms",
-      "iso3166": ""
+      "iso3166": "MY"
   },
   {
       "language": "Maltese",
       "bcp47": "mt",
-      "iso3166": "MY"
+      "iso3166": "MT"
   },
   {
       "language": "Burmese",
@@ -937,7 +937,7 @@
   {
       "language": "Yoruba",
       "bcp47": "yo",
-      "iso3166": "nG"
+      "iso3166": "NG"
   },
   {
       "language": "Zhuang;\nChuang",
@@ -953,5 +953,25 @@
       "language": "Zulu",
       "bcp47": "zu",
       "iso3166": "ZA"
-  }
+  },
+  {
+    "language": "Latin American Spanish",
+    "bcp47": "es-419",
+    "iso3166": "ES"
+  },
+  {
+    "language": "Chinese Hong-Kong",
+    "bcp47": "zh-hk",
+    "iso3166": "HK"
+  },
+  {
+    "language": "Chinese Taïwan",
+    "bcp47": "zh-tw",
+    "iso3166": "TW"
+  },
+  {
+    "language": "Portuguese Brazil",
+    "bcp47": "pt-br",
+    "iso3166": "BR"
+  } 
 ]
