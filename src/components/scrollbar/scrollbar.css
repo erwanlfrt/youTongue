@@ -19,3 +19,9 @@
   border-radius: 5px;
   background-color: #cfcfcf;
 }
+
+@media screen and (max-width: 800px) {
+  .scrollbar-wrapper-wrapper {
+    display: none;
+  }
+}

@@ -1,8 +1,10 @@
 #result-list  {
-  width: 57%;
+  width: 100%;
+  /* padding: 0 20%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1;
+  background-color: white;
 }

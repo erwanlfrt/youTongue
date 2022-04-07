@@ -542,7 +542,7 @@
   {
       "language": "Malayalam",
       "bcp47": "ml",
-      "iso3166": "IND"
+      "iso3166": "IN"
   },
   {
       "language": "Mongolian",
@@ -872,7 +872,7 @@
   {
       "language": "Twi",
       "bcp47": "tw",
-      "iso3166": "FH"
+      "iso3166": "GH"
   },
   {
       "language": "Tahitian",

@@ -90,33 +90,35 @@ class SearchBar extends React.Component<any, SearchBarState> {
     }
     if (true) {
       header = 
-        <div id="welcome-header" className={`${this.state.displayWelcomeScreen ? "welcome-header-display" : "welcome-header-hidden"}`}>
-          <div id="welcome-header-logo-wrapper">
-            <img src={Logo} alt="" id="welcome-header-logo" />
-          </div>
-          <div>
-            <div id="welcome-header-text">
-              <h1>Looking for YouTube videos with captions ?</h1>
-              <span>Search youTube videos according to languages you want.</span>
+        <div id="welcome-header-wrapper">
+          <div id="welcome-header" className={`${this.state.displayWelcomeScreen ? "welcome-header-display" : "welcome-header-hidden"}`}>
+            <div id="welcome-header-text-wrapper">
+              <div id="welcome-header-text">
+                <h1>Looking for YouTube videos with captions ?</h1>
+                <span>Search YouTube videos according to languages you want.</span>
+              </div>
             </div>
-            
+            <div id="welcome-header-logo-wrapper">
+              <img src={Logo} alt="" id="welcome-header-logo" />
+            </div>
           </div>
         </div>
+        
     }
     return(
-      <div id="search-bar-container">
+      <div id="search-bar-container" className={`${this.state.displayWelcomeScreen ? "search-bar-container-zoom-in" : "search-bar-container-zoom-out"}`}>
         {popup}
         <div id="search-bar-wrapper" className={`${this.state.displayWelcomeScreen ? "search-bar-wrapper-zoom-in" : "search-bar-wrapper-zoom-out"}`}>
           <div id="logo-wrapper">
             <img src={LogoText} alt="" id="logo" />
           </div>
           {header}
-          <form id="search-bar" className={`${this.state.displayWelcomeScreen ? "search-bar-zoom-in" : "search-bar-zoom-out"}`}>
+          <div id="search-bar" className={`${this.state.displayWelcomeScreen ? "search-bar-zoom-in" : "search-bar-zoom-out"}`}>
             <input id="search-bar-input-text" type="text" placeholder="Search" autoComplete="off" ref={this.input}></input>
             <button id="search-bar-input-submit" type="submit" >
               <img src={MagnifyingGlass} alt="" />
             </button>
-          </form>
+          </div>
           <div id="search-bar-language-section">
           {
             this.subtitles.map((subtitle) => {

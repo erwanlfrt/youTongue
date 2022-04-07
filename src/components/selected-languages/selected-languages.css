@@ -1,5 +1,6 @@
 #selected-languages {
-  position: absolute;
+  position: fixed;
+  bottom: 0;
   width: 400px;
   /* height: 40px; */
   background-color: #f9f9f9;

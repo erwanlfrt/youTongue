@@ -1,22 +1,38 @@
 .more-button {
+  filter: none;
   display: flex;
   align-items: center;
-  outline: 2px solid black;
-  border-radius: 20px;
-  padding-right: 1%;
-  margin: 1%;
-  height: 100%;
+  /* justify-content: center; */
+  border: 2px solid black;
+  border-radius: 8px;
+  padding-right: 7px;
+  /* padding-right: 1%; */
+  margin: 1% 1% 1% 0;
+  height: 18px;
+  width: 80px;
   cursor: pointer;
 }
+
 
 .more-button img {
   margin: 0;
   padding: 0;
-  height: 100%;
   border-radius: 20px;
+  width: 18px;
 }
 
 .more-button span {
   font-size: 0.9em;
   font-weight: bold;
+  display: inline-block;
+  line-height: 100px;
+}
+
+
+.more-button-text-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
 }

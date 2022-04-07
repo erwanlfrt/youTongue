@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: row;
   margin: 1% 0;
-  width: 100%;
-  height: 202px;
+  width: 60%;
+  /* height: 202px; */
+  transition: width 1s ease;
   background-color: #f9f9f9;
   cursor: pointer;
   text-decoration: none;
@@ -11,10 +12,12 @@
 
 .thumbnail {
   flex-shrink: 0;
+  flex-grow: 1;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 360px;
-  height: 202px;
+  max-width: 360px;
+  aspect-ratio: 320 / 180;
+  object-fit: contain;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -40,9 +43,7 @@
   font-family: 'Roboto', 'Arial';
   color: grey;
   font-size: 0.75rem;
-  width: 100%;
-  /* justify-content: space-between; */
-  max-width: 450px;
+  max-width: 60%;
 
 }
 
@@ -96,4 +97,86 @@
 
 .item-subtitles .item-subtitle {
   margin-bottom: 2%;
+  margin-right: 2%;
+}
+
+@media screen and ( max-width: 1450px)  {
+  .item {
+    width: 70%;
+  }
+  
+}
+
+
+@media screen and ( max-width: 1275px)  {
+  .item {
+    width: 75%;
+  }
+  
+}
+
+@media screen and ( max-width: 1175px)  {
+  .item {
+    width: 80%;
+  }
+  
+}
+
+@media screen and ( max-width: 1075px)  {
+  .item {
+    width: 85%;
+  }
+  
+}
+
+@media screen and ( max-width: 1100px)  {
+  .item {
+    width: 90%;
+  }
+  
+}
+
+@media screen and ( max-width: 1000px)  {
+  .item {
+    width: 95%;
+  }
+  
+}
+
+
+@media screen and ( max-width: 900px)  {
+  .item {
+    width: 100%;
+  }
+  
+}
+
+@media screen and ( max-width: 800px)  {
+  .item {
+    flex-direction: column;
+    align-items: center;
+    width: 60%
+  }
+
+  .thumbnail {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .item-info {
+    max-width: 100%;
+  }
+  
+}
+
+@media screen and ( max-width: 675px) {
+  .item {
+    width: 80%
+  }
+}
+
+@media screen and ( max-width: 500px) {
+  .item {
+    width: 90%
+  }
 }

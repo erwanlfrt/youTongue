@@ -12,7 +12,9 @@ class MoreButton extends React.Component<MoreButtonProps>{
     return(
       <div className="more-button" ref={this.props.innerRef}>
         <img src={AddIcon} alt="" />
-        <span className="more-button-text">more</span>
+        <div className="more-button-text-wrapper">
+          <span className="more-button-text">more</span>
+        </div>
       </div>
     )
   }

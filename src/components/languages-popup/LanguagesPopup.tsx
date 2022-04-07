@@ -61,7 +61,8 @@ class LanguagesPopup extends React.Component<PopupProps, PopupState> {
     }
     this.subtitles = tmp;
     this.setState({subtitles: tmp});
-
+    const event = new CustomEvent('search_language');
+    document.dispatchEvent(event);
   }
 
   render () {

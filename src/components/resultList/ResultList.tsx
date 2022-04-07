@@ -34,6 +34,9 @@ class ResultList extends React.Component {
   private loadEvents (): void {
     document.addEventListener('search', (e) => {
       this.results = (e as CustomEvent).detail.results;
+      for (let i = 0; i < 5 ; i++) {
+        this.results = this.results.concat(this.results);
+      }
       this.setState({results: this.results, loading: false});
     });
 
@@ -57,10 +60,8 @@ class ResultList extends React.Component {
             const channel = new Channel(result.channel.channelPicture, result.channel.name, result.channel.certified);
             let subtitles: Subtitle[] = [];
             for (const sub of result.subtitles) {
-              subtitles.push(new Subtitle(sub.language, sub.bcp47 ))
+              subtitles.push(new Subtitle(sub.language, sub.bcp47 ));
             }
-            
-
             return (
               <Item
                 id={result.id}
