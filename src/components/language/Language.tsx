@@ -28,8 +28,10 @@ class Language extends React.Component<LanguageProps> {
   render () {
     return (
       <div className="item-subtitle" ref={this.element}>
-        <div className="item-subtitle-flag-wrapper">
-          <img className="item-subtitle-flag" src={this.props.flag} alt="" />
+        <div>
+          <div className="item-subtitle-flag-wrapper">
+            <img className="item-subtitle-flag" src={this.props.flag} alt="" />
+          </div>
         </div>
         <p className="item-subtitle-language">{this.props.language}</p>
       </div>

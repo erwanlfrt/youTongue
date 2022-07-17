@@ -70,23 +70,13 @@ class Scrollbar extends React.Component {
     }
     let newMargin = parseInt(marginTop, 10) + shift;
 
-    console.log('shift = ', shift);
-
-    console.log('newMargin before = ', newMargin);
-
     if (newMargin < 0) newMargin = 0;
     if (scrollbar.clientHeight !== 0) {
       if (newMargin >  wrapper.clientHeight - scrollbar.clientHeight) {
         newMargin =  wrapper.clientHeight - scrollbar.clientHeight;
-        console.log('wrapper height = ', wrapper.clientHeight);
-        console.log('scrollbar height = ', scrollbar.clientHeight);
-        console.log('ça bloque');
       } 
     }
-    console.log('newMargin  = ', newMargin);
     scrollbar.style.marginTop = newMargin + 'px';
-    // console.log('wrapper.height = ', wrapper.clientHeight);
-    // console.log('Rendered = ', this.getRenderedHeightList()*0.9);
     this.updateList(newMargin / Math.floor(this.getRenderedHeightList()*0.9));
   }
 
@@ -110,8 +100,6 @@ class Scrollbar extends React.Component {
     }
     if (list && this.scrollbar.current) {
       let heightScrollbar = (  (popup.clientHeight - header.clientHeight)/ (nbRows * itemHeight)) * 100;
-      console.log('list height = ', (nbRows * itemHeight));
-      console.log('heightScrollar = ', heightScrollbar);
       if (heightScrollbar > 100) {
         heightScrollbar = 100;
       }
@@ -121,19 +109,12 @@ class Scrollbar extends React.Component {
 
   private updateList (coeff: number): void {
     const list  = document.getElementById('languages-popup-list') as HTMLDivElement;
-    console.log('coeff = ', coeff);
-    console.log('height list = ', list.clientHeight);
-    console.log('height rendered = ', this.getRenderedHeightList());
-    console.log('translate = ', coeff*list.clientHeight);
-    console.log('max = ', list.clientHeight - this.getRenderedHeightList())
     if (coeff*list.clientHeight > list.clientHeight - this.getRenderedHeightList() ) {
-      console.log('max atteint');
       if (list.clientHeight - this.getRenderedHeightList() > 0) {
         coeff =  (list.clientHeight - this.getRenderedHeightList()) / list.clientHeight;
       } else {
         coeff = 0;
       }
-      console.log('new coeff = ', coeff);
     }
     list.style.transform = 'translateY(' + -coeff * list.clientHeight + 'px)';
   }

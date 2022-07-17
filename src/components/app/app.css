@@ -4,6 +4,10 @@
   url("/src/assets/font/Roboto/roboto-v29-latin-regular.woff2") format("woff2")
  }
 
+ :root{
+  --animation-time: 0.5s;
+}
+
  html, body {
   margin:0;
   padding:0;

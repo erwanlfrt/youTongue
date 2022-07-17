@@ -20,7 +20,7 @@ export function bcp47ToIso3166 (bcp47: string): string {
 export function getLanguage (bcp47: string): Subtitle {
   for (let i = 0; i < languagesAndCountries.length; i++) {
     if (languagesAndCountries[i].bcp47.toLowerCase() === bcp47.toLowerCase()) {
-      return new Subtitle(languagesAndCountries[i].language, languagesAndCountries[i].bcp47);
+      return new Subtitle(languagesAndCountries[i].language.split(';')[0], languagesAndCountries[i].bcp47);
     }
   }
   return new Subtitle('unknown', 'unknown');
@@ -45,7 +45,7 @@ export function getAllLanguages (): Subtitle[] {
   let res: Subtitle[] = [];
   for (let i = 0; i < languagesAndCountries.length; i++) {
     if (languagesAndCountries[i].iso3166 !== '') {
-      res.push(new Subtitle(languagesAndCountries[i].language, languagesAndCountries[i].bcp47));
+      res.push(new Subtitle(languagesAndCountries[i].language.split(';')[0], languagesAndCountries[i].bcp47));
     }
   }
   return res;

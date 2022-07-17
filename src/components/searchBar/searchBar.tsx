@@ -90,8 +90,8 @@ class SearchBar extends React.Component<any, SearchBarState> {
     }
     if (true) {
       header = 
-        <div id="welcome-header-wrapper">
-          <div id="welcome-header" className={`${this.state.displayWelcomeScreen ? "welcome-header-display" : "welcome-header-hidden"}`}>
+        <div id="welcome-header-wrapper"  className={`${this.state.displayWelcomeScreen ? "welcome-header-wrapper-display" : "welcome-header-wrapper-hidden"}`}>
+          <div id="welcome-header">
             <div id="welcome-header-text-wrapper">
               <div id="welcome-header-text">
                 <h1>Looking for YouTube videos with captions ?</h1>
@@ -108,26 +108,28 @@ class SearchBar extends React.Component<any, SearchBarState> {
     return(
       <div id="search-bar-container" className={`${this.state.displayWelcomeScreen ? "search-bar-container-zoom-in" : "search-bar-container-zoom-out"}`}>
         {popup}
-        <div id="search-bar-wrapper" className={`${this.state.displayWelcomeScreen ? "search-bar-wrapper-zoom-in" : "search-bar-wrapper-zoom-out"}`}>
+        <div id="search-bar-wrapper">
           <div id="logo-wrapper">
             <img src={LogoText} alt="" id="logo" />
           </div>
           {header}
-          <div id="search-bar" className={`${this.state.displayWelcomeScreen ? "search-bar-zoom-in" : "search-bar-zoom-out"}`}>
-            <input id="search-bar-input-text" type="text" placeholder="Search" autoComplete="off" ref={this.input}></input>
-            <button id="search-bar-input-submit" type="submit" >
-              <img src={MagnifyingGlass} alt="" />
-            </button>
-          </div>
-          <div id="search-bar-language-section">
-          {
-            this.subtitles.map((subtitle) => {
-              return (
-                <Language flag={subtitle.flag} language={subtitle.language} bcp47={subtitle.bcp47} ></Language>
-              )
-            })
-          }
-          <MoreButton innerRef={this.more}></MoreButton>
+          <div id="lower-search-bar" className={`${this.state.displayWelcomeScreen ? "" : "lower-search-bar-zoom-out"}`}>
+            <div id="search-bar" className={`${this.state.displayWelcomeScreen ? "search-bar-zoom-in" : "search-bar-zoom-out"}`}>
+              <input id="search-bar-input-text" type="text" placeholder="Search" autoComplete="off" ref={this.input}></input>
+              <button id="search-bar-input-submit" type="submit" >
+                <img src={MagnifyingGlass} alt="" />
+              </button>
+            </div>
+            <div id="search-bar-language-section">
+            {
+              this.subtitles.map((subtitle) => {
+                return (
+                  <Language flag={subtitle.flag} language={subtitle.language} bcp47={subtitle.bcp47} ></Language>
+                )
+              })
+            }
+            <MoreButton innerRef={this.more}></MoreButton>
+            </div>
           </div>
         </div>
       </div>

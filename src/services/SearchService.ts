@@ -9,7 +9,7 @@ type VideoInfo = {
 }
 
 class SearchService {
-  private MAX_REQUEST = 1;
+  private MAX_REQUEST = 10;
   private youtubeAPIKey = "AIzaSyD7N92-iFT6uEixwqNFRcXhZ8CZUgJjyWc";
   private urlSearchRequest = "https://www.googleapis.com/youtube/v3/search?maxResults=" + this.MAX_REQUEST +"&type=video&part=snippet&q=";
   private urlCaptionsRequest = "https://www.googleapis.com/youtube/v3/captions?";
@@ -110,7 +110,6 @@ class SearchService {
     if (isNaN(seconds)) {
       seconds = 0;
     }
-    // console.log('M: ', minutes, ' S: ', seconds);
     time.setMinutes(minutes)
     time.setSeconds(seconds);
 

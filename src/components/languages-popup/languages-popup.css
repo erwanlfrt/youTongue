@@ -86,9 +86,9 @@
   padding: 0;
   right: 16%;
   top: 12%;
-  height: 7%;
+  height: 4vmax;
   border: 3px solid black;
-  border-radius: 30px;
+  border-radius: 100%;
 }
 
 #languages-popup-close-button img {
@@ -98,7 +98,7 @@
 
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 950px) {
   #languages-popup {
     width: 90%;
   }
@@ -112,6 +112,12 @@
 @media screen and (max-width: 1050px) {
   #languages-popup-list {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #languages-popup-close-button {
+    border: none;
   }
 }
 
@@ -130,6 +136,6 @@
     border: none;
     right: 7.5%;
     top: 12.3%;
-    height: 4%;
+    /* height: 4%; */
   }
 }
