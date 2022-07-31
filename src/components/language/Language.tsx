@@ -1,6 +1,7 @@
 import React from 'react';
 import './language.css'
 import Context from '../../services/Context';
+import Cross from 'assets/icons/close_white.svg';
 
 type LanguageProps = {
   language: string,
@@ -10,30 +11,31 @@ type LanguageProps = {
 
 class Language extends React.Component<LanguageProps> {
   private element: React.RefObject<HTMLDivElement>;
+  private flag: React.RefObject<HTMLImageElement>;
+  private flagWrapper: React.RefObject<HTMLDivElement>;
+  private text: React.RefObject<HTMLSpanElement>;
   static contextType = Context;
   
   constructor (props: LanguageProps) {
     super(props);
     this.element = React.createRef<HTMLDivElement>();
-
+    this.flag = React.createRef<HTMLImageElement>();
+    this.text = React.createRef<HTMLSpanElement>();
+    this.flagWrapper = React.createRef<HTMLDivElement>();
   }
 
   componentDidMount () {
     this.loadEvents();
     this.loadStyle();
-
-
   }
 
   render () {
     return (
       <div className="item-subtitle" ref={this.element}>
-        <div>
-          <div className="item-subtitle-flag-wrapper">
-            <img className="item-subtitle-flag" src={this.props.flag} alt="" />
-          </div>
+        <div className="item-subtitle-flag-wrapper" ref={this.flagWrapper} >
+          <img className="item-subtitle-flag" src={this.props.flag} alt="" ref={this.flag} />
         </div>
-        <p className="item-subtitle-language">{this.props.language}</p>
+        <span className="item-subtitle-language" ref={this.text}>{this.props.language}</span>
       </div>
     )
   }
@@ -53,8 +55,38 @@ class Language extends React.Component<LanguageProps> {
         document.dispatchEvent(event);
       });
 
+      const flag = this.flag.current;
+      const text = this.text.current;
+      const flagWrapper = this.flagWrapper.current;
+      el.addEventListener('mouseenter', () => {
+        if (flag && text && flagWrapper && el.classList.contains('selected')) {
+          el.style.backgroundColor  = '#eb5454';
+          text.innerText = 'remove';
+          text.style.color = 'white';
+          flag.src = Cross;
+          flagWrapper.style.width = '35px';
+        }
+      })
+
+      el.addEventListener('mouseleave', () =>  {
+        if (flag && text && flagWrapper) {
+          el.style.backgroundColor  = '#96e02f';
+          text.style.color = 'black';
+          text.innerText = this.props.language;
+          flag.src = this.props.flag;
+          flagWrapper.style.width = 'auto';
+        }
+      })
+
       document.addEventListener('languages_update', () => {
         this.loadStyle();
+        if (flag && text && flagWrapper) {
+          el.style.backgroundColor  = '#96e02f';
+          text.style.color = 'black';
+          text.innerText = this.props.language;
+          flag.src = this.props.flag;
+          flagWrapper.style.width = 'auto';
+        }
       });
     }
     

@@ -1,12 +1,5 @@
 import languagesAndCountries from 'assets/data/languages-countries.json';
-import { IResult } from 'model/Format';
 import Subtitle from '../model/Subtitle';
-
-type LanguageCountry = {
-  bcp47: string;
-  iso3166: string;
-  language: string;
-}
 
 export function bcp47ToIso3166 (bcp47: string): string {
   for (let i = 0; i < languagesAndCountries.length; i++) {

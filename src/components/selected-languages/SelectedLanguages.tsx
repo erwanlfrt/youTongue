@@ -4,6 +4,8 @@ import './selected-languages.css';
 import Context from '../../services/Context';
 import Language from 'components/language/Language';
 import { getLanguage } from 'services/LanguageService';
+import ArrowRight from 'assets/icons/arrow-right.svg';
+import ArrowLeft from 'assets/icons/arrow-left.svg';
 
 type SelectedLanguagesState = {
   subtitles: Subtitle[],
@@ -14,21 +16,9 @@ class SelectedLanguages extends React.Component<any, SelectedLanguagesState> {
   static contextType = Context;
   private list: React.RefObject<HTMLDivElement>;
   private listWrapper: React.RefObject<HTMLDivElement>;
-  private shift = 0;
-  private step = 3;
-  private previousX = -1;
-
-  private mouseMoveListener = (e: MouseEvent) => {
-
-      this.shift += (e.clientX - this.previousX);
-      if (this.list.current) {
-        if (this.shift > 0) this.shift = 0;
-        if (this.shift < -this.getMaxShift()) this.shift = -this.getMaxShift();
-        this.list.current.style.transform = 'translateX(' + this.shift + 'px)';
-      }
-      this.previousX = e.clientX;
-  }
-
+  private slideIndex = 0;
+  private previousShift = 0;
+  private numberOfItems = 0;
 
   constructor (props: any) {
     super(props);
@@ -45,14 +35,23 @@ class SelectedLanguages extends React.Component<any, SelectedLanguagesState> {
   }
 
   private getMaxShift (): number {
-    if (!this.list.current) return -1;
+    if (!this.list.current || this.list.current.children.length === 0) return -1;
     let listLength = 0;
-    for (let i = 0; i < this.list.current.children.length - 1; i++) {
-      listLength += (this.list.current.children[i].clientWidth);
+    let widthLanguage = this.outerWidth(this.list.current.children[0] as HTMLElement);
+    for (let i = 0; i < this.list.current.children.length; i++) {
+      listLength += widthLanguage
     }
     const maxShift = listLength - this.list.current.clientWidth;
     if (maxShift < 0) return 0;
     return maxShift;
+  }
+
+  private outerWidth(el: HTMLElement) {
+    var width = el.offsetWidth;
+    var style = getComputedStyle(el);
+  
+    width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+    return width;
   }
   
   private loadEvents (): void {
@@ -63,45 +62,83 @@ class SelectedLanguages extends React.Component<any, SelectedLanguagesState> {
           subtitles.push(getLanguage(bcp47))
         }
         this.setState({subtitles: subtitles});
-        
+        if (subtitles.length < this.numberOfItems) {
+          this.slideRight();
+          this.slideIndex--;
+        }
+        this.numberOfItems = subtitles.length;
       }
     });
-    this.listWrapper.current?.addEventListener('mousedown', (e: MouseEvent) => {
-      this.previousX = e.clientX;
-      this.listWrapper.current?.addEventListener('mousemove', this.mouseMoveListener);
-    });
-    this.listWrapper.current?.addEventListener('mouseup', () => {
-      this.listWrapper.current?.removeEventListener('mousemove', this.mouseMoveListener);
-    });
-    this.listWrapper.current?.addEventListener('mouseleave', () => {
-      this.listWrapper.current?.removeEventListener('mousemove', this.mouseMoveListener);
-    })
+  }
+
+  private slideLeft() {
+    if (!this.list.current || this.list.current.children.length === 0) return;
+    this.slideIndex--;
+    if (this.slideIndex < 0) this.slideIndex = 0;
+    const widthLanguage = this.outerWidth(this.list.current.children[0] as HTMLElement);
+    this.slide(this.slideIndex * widthLanguage);
     
   }
 
-  render () {
-    let message = <span className="existingMessage">Selected languages</span>
-    if (this.context.languages_bcp47.length === 0) {
-      message = <span className="nothingMessage">No language selected</span>
+  private slideRight() {
+    if (!this.list.current || this.list.current.children.length === 0) return;
+    this.slideIndex++;
+    const widthLanguage = this.outerWidth(this.list.current.children[0] as HTMLElement);
+    let maxShift = this.getMaxShift()
+    let shift = this.slideIndex * widthLanguage;
+    if (shift > maxShift) {
+      shift = maxShift;
+      if (shift === this.previousShift) {
+        this.slideIndex--;
+      }
     }
-    const subtitles = [];
+    this.slide(shift);
+    
+  }
+
+  private slide(shift: number) {
+    if (!this.list.current || this.list.current.children.length === 0) return;
+    this.list.current.style.transform = `translateX(-${shift}px)`
+    this.previousShift = shift;
+  }
+  
+  render () {
+    let subtitles = [];
     for (const bcp47 of this.context.languages_bcp47) {
       subtitles.push(getLanguage(bcp47))
     }
-    return (
-      <div id="selected-languages"  ref={this.listWrapper}>
-        {message}
-        <div id="selected-languages-list" ref={this.list}>
-          {
-            subtitles.map((subtitle) => {
-            return (
-              <Language flag={subtitle.flag} language={subtitle.language} bcp47={subtitle.bcp47} ></Language>
-              )
-            })
-          }
+
+    let arrowLeft = null;
+    let arrowRight = null;
+    if (this.getMaxShift() > 0) {
+      arrowLeft = <img className="arrows arrow-left" src={ArrowLeft} alt="" onClick={this.slideLeft.bind(this)}/>
+      arrowRight = <img className="arrows arrow-right" src={ArrowRight} alt="" onClick={this.slideRight.bind(this)}/>
+    }
+    if (subtitles.length > 0) {
+      return (
+        <div id="selected-languages"  ref={this.listWrapper}>
+          { arrowLeft }
+          <div id="selected-languages-list-wrapper">
+            <div id="selected-languages-list" ref={this.list}>
+              {
+                subtitles.map((subtitle) => 
+                  <Language key={subtitle.bcp47} flag={subtitle.flag} language={subtitle.language} bcp47={subtitle.bcp47} ></Language>
+                )
+              }
+            </div>
+          </div>
+          
+          { arrowRight }
+          {/* <button onClick={() => {this.context.languages_bcp47.push('en');const event = new CustomEvent('languages_update');document.dispatchEvent(event);}}>TO REMOVE</button> */}
         </div>
-      </div>
-    )
+        
+      )
+    } else {
+      return (
+        <div></div>
+      )
+    }
+    
   }
 }
 

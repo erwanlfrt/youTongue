@@ -3,45 +3,44 @@
   display: flex;
   align-items: center;
   justify-content: stretch;
-  background-color: rgb(173, 227, 209);
-  color: rgb(36, 95, 125);
+  background-color: #96e02f;
   font-size: 1.2em;
   font-weight: bold;
   text-transform: capitalize;
   border-radius: 8px;
-  height: 100%;
-  max-height: 18px;
+  height: 25px;
   background-size: 100%;
-  width: 100px;
   text-overflow: ellipsis;
   user-select: none;
 }
 
+.item-subtitle-flag-wrapper {
+  border-radius: 8px;
+  object-fit: cover;
+  pointer-events: none;
+  display: flex;
+  max-width: 35px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
 .item-subtitle-flag {
   border-radius: 8px;
-  max-height: 18px;
+  max-height: 100%;
   object-fit: cover;
   pointer-events: none;
 }
 
 .item-subtitle-language {
-  margin: 0;
-  padding-left: 5%;
+  margin: 10px;
   height: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
 }
 
-.item-subtitle-flag-wrapper {
-  border-radius: 8px;
-  max-height: 18px;
-  object-fit: cover;
-  pointer-events: none;
-  display: flex;
-  max-width: 27px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-}

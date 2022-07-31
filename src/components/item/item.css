@@ -3,7 +3,6 @@
   flex-direction: row;
   margin: 1% 0;
   width: 60%;
-  /* height: 202px; */
   transition: width 1s ease;
   background-color: #f9f9f9;
   cursor: pointer;

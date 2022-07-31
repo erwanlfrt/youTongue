@@ -1,0 +1,51 @@
+.option-subtitle {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 5px;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  cursor: pointer;
+}
+
+
+
+@media (hover: hover) and (pointer: fine) {
+  .option-subtitle:hover {
+    background-color: lightgrey;
+  }
+}
+
+.option-subtitle-flag {
+  min-height: 25px;
+  height: auto;
+  width: 40px;
+  margin: 5px;
+  object-fit: cover;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+.unknown-flag {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.option-subtitle-language {
+  filter: none;
+  margin-left: 5px;
+  font-size: 1.1em;
+  font-weight:500;
+  text-transform: capitalize;
+}
+
+.selected {
+  background-color: #96e02f;
+}

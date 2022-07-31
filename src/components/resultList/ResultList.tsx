@@ -1,17 +1,11 @@
 import Channel from 'model/Channel';
 import Subtitle from 'model/Subtitle';
 import React from 'react';
-import { IResult, ISubtitle } from '../../model/Format';
-import searchService from '../../services/SearchService';
+import { IResult } from '../../model/Format';
 import Item from '../item/Item';
 import './result-list.css'
 import Context from '../../services/Context';
 import Loader from '../loader/Loader';
-
-type ResultProps = {
-  results: IResult[],
-  loading: boolean
-}
 
 class ResultList extends React.Component {
   private results: IResult[];

@@ -1,0 +1,64 @@
+.language-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px dashed black;
+  z-index: 10000;
+}
+
+.language-list * {
+  box-sizing: content-box;
+}
+
+.languages-list-upper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  width: 100%;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 0 5px;
+}
+
+.languages-list-core {
+  width: 100%;
+  background-color: white;
+  border: 1px dashed black;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.noselect-flag {
+  display: none;
+}
+
+@media screen and ( max-width: 550px)  {
+  .noselect-flag {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 25px;
+    height: auto;
+    width: 40px;
+    border-radius: 8px;
+  }
+
+  .noselect {
+    display: none;
+  }
+}

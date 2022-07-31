@@ -71,18 +71,17 @@ class LanguagesPopup extends React.Component<PopupProps, PopupState> {
         <div id="languages-popup-background">
           <div id="languages-popup">
             <div id="languages-popup-header">
-              <input type="text" placeholder="Search languages..." id="languages-popup-search" ref={this.inputField} />
+              <div id="languages-popup-search-wrapper"> 
+                <input autoComplete="off" type="text" placeholder="Search languages..." id="languages-popup-search"  ref={this.inputField} />
+              </div>
               <button id="languages-popup-close-button" ref={this.closeButton}><img src={CloseIcon} alt="" /></button>
             </div>
             <div id="languages-popup-list-wrapper">
               <div id="languages-popup-list">
                 {
-                  this.state.subtitles.map((subtitle) => {
-                    return (
-                      <Language flag={subtitle.flag} language={subtitle.language} bcp47={subtitle.bcp47} ></Language>
-                      
-                    )
-                  })
+                  this.state.subtitles.map((subtitle) =>
+                    <Language key={subtitle.bcp47} flag={subtitle.flag} language={subtitle.language} bcp47={subtitle.bcp47} ></Language>
+                  )
                 }
               </div>
               <Scrollbar></Scrollbar>
@@ -90,7 +89,6 @@ class LanguagesPopup extends React.Component<PopupProps, PopupState> {
             
           </div>
         </div>
-        
       )
     }
     return null;

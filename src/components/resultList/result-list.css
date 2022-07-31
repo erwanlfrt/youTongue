@@ -1,10 +1,25 @@
 #result-list  {
   width: 100%;
-  /* padding: 0 20%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1;
   background-color: white;
+}
+
+#empty-message {
+  color: grey;
+}
+
+#empty-message-wrapper {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+  #empty-message-wrapper {
+    position: relative;
+  }
 }

@@ -7,12 +7,26 @@ class Scrollbar extends React.Component {
   private scrollbar: React.RefObject<HTMLDivElement>;
 
   private y: number = -1;
+  private previousScrollY: number = 0;
+  private touchThrottle: number | null = null;
 
   private wheelListener =  ((e: WheelEvent) => {
     e.preventDefault();
     this.scroll(e.deltaY, 20, true);
     this.y += e.deltaY
   });
+
+  private scrollListener = ((e: TouchEvent) => {
+    if (this.touchThrottle === null) {
+      this.touchThrottle = window.setTimeout(() => {
+        const deltaY = this.previousScrollY - e.touches[0].clientY;
+        this.scroll(deltaY, 5, true);
+        this.previousScrollY = e.touches[0].clientY;
+        this.touchThrottle = null;
+      }, 0)
+    }
+    
+  })
 
   constructor (props: any) {
     super(props);
@@ -28,6 +42,8 @@ class Scrollbar extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('wheel', this.wheelListener);
+    window.removeEventListener('touchmove', this.scrollListener);
+
   }
 
   private loadEvents () {
@@ -40,6 +56,9 @@ class Scrollbar extends React.Component {
     });
     
     window.addEventListener('wheel', this.wheelListener, { passive:false });
+    window.addEventListener('touchmove', this.scrollListener, { passive: false});
+
+    window.addEventListener('touchend', () => this.previousScrollY = 0);
 
     document.addEventListener('search_language', () => {
       const scrollbar  = this.scrollbar.current as HTMLDivElement;
@@ -48,7 +67,6 @@ class Scrollbar extends React.Component {
         this.updateList(0);
         this.loadStyle();
       }
-
     });
   }
 

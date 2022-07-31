@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import ResultList from '../resultList/ResultList';
 import SearchBar from '../searchBar/searchBar';
-import SelectedLanguages from 'components/selected-languages/SelectedLanguages';
 import './app.css'
 import Context from 'services/Context'; 
+import Placeholder from 'components/placeholder/Placeholder';
 
 
 
@@ -13,36 +13,44 @@ type GlobalState = {
   displayWelcomeScreen: boolean
 }
 class App extends React.Component<any, GlobalState>{
-  state = {
-    languages_bcp47: [],
-    loading: false,
-    displayWelcomeScreen: true
-  };
 
   constructor (props: any) {
     super(props);
+    this.state = {
+      languages_bcp47: [],
+      loading: false,
+      displayWelcomeScreen: true
+    };
+  }
+
+  componentDidMount(){
+    this.displayWelcomeScreen = this.displayWelcomeScreen.bind(this);
     this.loadEvents();
   }
 
   private loadEvents (): void {
     document.addEventListener('input-click', () => {
-      this.setState({displayWelcomeScreen: false});
+      this.displayWelcomeScreen(false)
     });
+  }
+
+  private displayWelcomeScreen(display: boolean) {
+    this.setState({displayWelcomeScreen: display});
   }
 
   render() {
     let resultList = null;
-    let selectedLanguages = null;
+    let placeholder: ReactElement | null= <Placeholder></Placeholder>;
     if (!this.state.displayWelcomeScreen) {
       resultList = <ResultList></ResultList>
-      selectedLanguages = <SelectedLanguages></SelectedLanguages>
+      placeholder = null
     }
     return (
       <div id="App">
         <Context.Provider value={{languages_bcp47: this.state.languages_bcp47, loading: this.state.loading, displayWelcomeScreen: this.state.displayWelcomeScreen}}>
           <SearchBar></SearchBar>
+          {placeholder}
           {resultList}
-          {selectedLanguages}
         </Context.Provider>
         
       </div>
