@@ -375,11 +375,6 @@
       "iso3166": "CA"
   },
   {
-      "language": "Hebrew",
-      "bcp47": "iw",
-      "iso3166": "IL"
-  },
-  {
       "language": "Japanese",
       "bcp47": "ja",
       "iso3166": "JP"
@@ -392,11 +387,6 @@
   {
       "language": "Javanese",
       "bcp47": "jv",
-      "iso3166": "ID"
-  },
-  {
-      "language": "Javanese",
-      "bcp47": "jw",
       "iso3166": "ID"
   },
   {

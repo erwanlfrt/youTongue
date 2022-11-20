@@ -70,7 +70,7 @@ class Language extends React.Component<LanguageProps> {
 
       el.addEventListener('mouseleave', () =>  {
         if (flag && text && flagWrapper) {
-          el.style.backgroundColor  = '#96e02f';
+          el.style.backgroundColor  = '#7cc276';
           text.style.color = 'black';
           text.innerText = this.props.language;
           flag.src = this.props.flag;
@@ -81,7 +81,7 @@ class Language extends React.Component<LanguageProps> {
       document.addEventListener('languages_update', () => {
         this.loadStyle();
         if (flag && text && flagWrapper) {
-          el.style.backgroundColor  = '#96e02f';
+          el.style.backgroundColor  = '#7cc276';
           text.style.color = 'black';
           text.innerText = this.props.language;
           flag.src = this.props.flag;
